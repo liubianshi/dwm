@@ -179,6 +179,24 @@ git add .
 git commit -m "viewontag"
 ```
 
+# [rotatestack](https://dwm.suckless.org/patches/rotatestack/)
+
+Stack rotation moves a client from the bottom to the top of the stack (or the
+other way round). This effectively rotates the clients by one position
+clockwise (or CCW, respectively).
+
+It should play well with arbitrary stack layouts and nmaster values.
+
+One may think of it as moving the zoom through the list of clients, very much
+in the same way as scrolling moves the view port around a pane.
+
+```bash
+wget https://dwm.suckless.org/patches/rotatestack/dwm-rotatestack-20161021-ab9571b.diff
+patch < ./dwm-rotatestack-20161021-ab9571b.diff
+git add .
+git commmit -m "patch rotate stack"
+```
+
 
 
 
