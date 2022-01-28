@@ -25,4 +25,18 @@ git add .
 git commit -m "patch dwmc"
 ```
 
+## [focusurgent](https://dwm.suckless.org/patches/focusurgent/)
+
+
+- Selects the next window having the urgent flag regardless of the tag it is on
+- The urgent flag can be artificially set with the following xdotool command on
+  any window: xdotool selectwindow -- set_window --urgency 1
+
+```sh
+wget 'https://dwm.suckless.org/patches/focusurgent/dwm-focusurgent-20160831-56a31dc.diff'
+patch -i dwm-focusurgent-20160831-56a31dc.diff
+git add .
+git commit -m "focusurgent"
+```
+
 
