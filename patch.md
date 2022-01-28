@@ -147,6 +147,9 @@ git commit -m "pathc hide-vacant-tags"
 
 # [pertag](https://dwm.suckless.org/patches/pertag/)
 
+More general approach to taglayouts patch. This patch keeps layout, mwfact,
+barpos and nmaster per tag.
+
 ```bash
 wget https://dwm.suckless.org/patches/pertag/dwm-pertag-20200914-61bb8b2.diff
 patch -i ./dwm-pertag-20200914-61bb8b2.diff
@@ -154,7 +157,14 @@ git add .
 git commit -m "patch pertag"
 ```
 
+# [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/)
 
+```bash
+wget https://dwm.suckless.org/patches/vanitygaps/dwm-vanitygaps-6.2.diff
+patch -i ./dwm-vanitygaps-6.2.diff
+git add .
+git commit -m "vanitygaps"
+```
 
 
 
