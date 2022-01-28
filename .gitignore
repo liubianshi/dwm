@@ -1,0 +1,8 @@
+*.o
+*.orig
+*.rej
+*.a
+*.tar.gz
+
+dwm
+dwmc
