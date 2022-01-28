@@ -225,6 +225,26 @@ patch < ./dwm-stacker-6.2.diff
 
 与 awesomebar 有严重的冲突, 注意修正
 
+```bash
+git add .
+git commit -m "patch stacker"
+```
+
+# [warp](https://dwm.suckless.org/patches/warp/)
+
+
+This patch warps the mouse cursor to the center of the currently focused window
+or screen when the mouse cursor is (a) on a different screen or (b) on top of
+a different window.
+
+```bash
+wget https://dwm.suckless.org/patches/warp/dwm-warp-6.2.diff
+patch < ./dwm-warp-6.2.diff
+git add .
+git commit -m "warp"
+```
+
+
 
 
 
