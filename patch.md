@@ -159,11 +159,24 @@ git commit -m "patch pertag"
 
 # [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/)
 
+Inspired by some of the functionality of i3-gaps this patch adds (inner) gaps between client windows and (outer) gaps between windows and the screen edge in a flexible manner.
+
 ```bash
 wget https://dwm.suckless.org/patches/vanitygaps/dwm-vanitygaps-6.2.diff
 patch -i ./dwm-vanitygaps-6.2.diff
 git add .
 git commit -m "vanitygaps"
+```
+
+# [viewontag](https://dwm.suckless.org/patches/viewontag/)
+
+Follow a window to the tag it is being moved to.
+
+```bash
+wget https://dwm.suckless.org/patches/viewontag/dwm-viewontag-20210312-61bb8b2.diff
+patch < ./dwm-viewontag-20210312-61bb8b2.diff
+git add .
+git commit -m "viewontag"
 ```
 
 
