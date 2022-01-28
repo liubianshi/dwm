@@ -101,8 +101,20 @@ patch -i ./dwm-systray-6.3.diff
 
 ```sh
 git add .
-git commit -m "systray"
+git commit -m "systray_adjust"
 ```
+
+注意 drawbar 函数, 同时打 systray 和 statuscmd 这两个补丁时, 容易出现非常诡异的问题. 
+所以还需要做一些手动调整.
+
+
+# [awesomebar](https://dwm.suckless.org/patches/awesomebar/)
+
+```sh
+wget https://dwm.suckless.org/patches/awesomebar/dwm-awesomebar-20200907-6.2.diff
+patch -i dwm-awesomebar-20200907-6.2.diff
+```
+
 
 
 
