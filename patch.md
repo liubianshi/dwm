@@ -194,9 +194,36 @@ in the same way as scrolling moves the view port around a pane.
 wget https://dwm.suckless.org/patches/rotatestack/dwm-rotatestack-20161021-ab9571b.diff
 patch < ./dwm-rotatestack-20161021-ab9571b.diff
 git add .
-git commmit -m "patch rotate stack"
+git commit -m "patch rotate stack"
 ```
 
+# [stacker](https://dwm.suckless.org/patches/stacker/)
+
+
+This patch provides comprehensive utilities for managing the client stack. It
+implements two new commands: focusstack (which is a replacement for the
+original focusstack command) and pushstack. The first one is for focusing
+clients while the second one moves clients around the stack. Both commands take
+the same kind of argument:
+
+- Pass PREVSEL to focus/push the previously selected client in the current
+  tagset.
+- Pass INC(+/-inc) to focus/push relatively to the selected client. This will
+  wrap around the stack limits.
+- Pass a positive number to focus/push relatively to the beginning of the
+  stack. Out of limit values will be truncated to the position of the last
+  visible client and won't wrap around.
+- Pass a negative number to focus/push relatively to the last visible client in
+  the stack. Here -1 means the last client, -2 the previous to last client,
+  etc. Out of limit values will be truncated to the position of the first
+  visible client (0) and won't wrap around.
+
+```bash
+wget https://dwm.suckless.org/patches/stacker/dwm-stacker-6.2.diff
+patch < ./dwm-stacker-6.2.diff
+```
+
+与 awesomebar 有严重的冲突, 注意修正
 
 
 
