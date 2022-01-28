@@ -269,12 +269,18 @@ git add .
 git commit -m "namedscratchpads"
 ```
 
-
-
 # [multipledynamicscratchpads](https://dwm.suckless.org/patches/multipledynamicscratchpads/)
 
 ```bash
 wget https://dwm.suckless.org/patches/multipledynamicscratchpads/dwm-multiple-dynamic-scratchpads.diff
+patch < ./dwm-multiple-dynamic-scratchpads.diff
+```
+
+存在冲突, 需要合并
+
+```bash
+git add .
+git commit -m "multipledynamicscratchpads"
 ```
 
 
