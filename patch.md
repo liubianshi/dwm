@@ -134,6 +134,19 @@ git add .
 git commit -m "actualfullscreen"
 ```
 
+# [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
+
+This patch prevents dwm from drawing tags with no clients (i.e. vacant) on the bar.
+
+```bash
+wget https://dwm.suckless.org/patches/hide_vacant_tags/dwm-hide_vacant_tags-6.2.diff
+patch -i ./dwm-hide_vacant_tags-6.2.diff
+git add .
+git commit -m "pathc hide-vacant-tags"
+```
+
+
+
 
 
 
