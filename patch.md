@@ -145,6 +145,15 @@ git add .
 git commit -m "pathc hide-vacant-tags"
 ```
 
+# [pertag](https://dwm.suckless.org/patches/pertag/)
+
+```bash
+wget https://dwm.suckless.org/patches/pertag/dwm-pertag-20200914-61bb8b2.diff
+patch -i ./dwm-pertag-20200914-61bb8b2.diff
+git add .
+git commit -m "patch pertag"
+```
+
 
 
 
