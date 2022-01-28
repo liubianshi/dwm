@@ -65,4 +65,25 @@ git add .
 git commit -m "patch statuscmd"
 ```
 
+# [restartsig](https://dwm.suckless.org/patches/restartsig/)
+
+dwm can now be restarted via MOD+CTRL+SHIFT+Q or by kill -HUP dwmpid
+
+In addition, a signal handler was added so that dwm cleanly quits by kill -TERM dwmpid.
+
+```sh
+wget https://dwm.suckless.org/patches/restartsig/dwm-restartsig-20180523-6.2.diff
+patch -i dwm-restartsig-20180523-6.2.diff
+```
+
+手动处理没有自动完成的补丁, 处理完成后, 测试是否存在问题. 在处理冲突的过程中, 调整快捷键
+通过 MOD+SHIFT+Q 重启 dwm, 但不重启整个系统, 而通过 MOD+CTRL+SHIFT+Q 重启整个系统.
+
+```bash
+git add .
+git commit -m "restartsig"
+```
+
+
+
 
