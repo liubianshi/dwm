@@ -244,6 +244,38 @@ git add .
 git commit -m "warp"
 ```
 
+# [namedscratchpads](https://dwm.suckless.org/patches/namedscratchpads/)
+
+Allows for the creation of multiple scratchpad windows, each assigned to
+different keybinds.
+
+On pressing the keybind the window will either:
+
+- Spawn based on the given command, if it's not already running
+- Toggle visibility of the window
+
+A new field in the rules array is added to associate the command with the
+corresponding rule.
+
+```bash
+wget https://dwm.suckless.org/patches/namedscratchpads/dwm-namedscratchpads-6.2.diff
+patch < ./dwm-namedscratchpads-6.2.diff
+```
+
+存在冲突, 需要合并
+
+```bash
+git add .
+git commit -m "namedscratchpads"
+```
+
+
+
+# [multipledynamicscratchpads](https://dwm.suckless.org/patches/multipledynamicscratchpads/)
+
+```bash
+wget https://dwm.suckless.org/patches/multipledynamicscratchpads/dwm-multiple-dynamic-scratchpads.diff
+```
 
 
 
