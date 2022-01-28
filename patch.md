@@ -6,7 +6,7 @@ This patch will make dwm run "~/.dwm/autostart_blocking.sh" and
 "~/.dwm/autostart.sh &" before entering the handler loop. One or both of these
 files can be ommited.
 
-```sh
+```bash
 wget 'https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff'
 patch -i dwm-autostart-20210120-cb3f58a.diff
 rm *.orig
@@ -18,7 +18,7 @@ git commit -m "patch autostart"
 
 Simple dwmc client using a fork of fsignal to communicate with dwm.
 
-```sh
+```bash
 wget https://dwm.suckless.org/patches/dwmc/dwm-dwmc-6.2.diff
 patch -i dwm-dwmc-6.2.diff
 git add .
@@ -32,7 +32,7 @@ git commit -m "patch dwmc"
 - The urgent flag can be artificially set with the following xdotool command on
   any window: xdotool selectwindow -- set_window --urgency 1
 
-```sh
+```bash
 wget 'https://dwm.suckless.org/patches/focusurgent/dwm-focusurgent-20160831-56a31dc.diff'
 patch -i dwm-focusurgent-20160831-56a31dc.diff
 git add .
@@ -46,14 +46,14 @@ dwmblocks the location and button when clicking on the status bar.
 Alternatively, there is a version that executes shell commands defined in
 config.h instead of using signals.
 
-```sh
+```bash
 wget https://dwm.suckless.org/patches/statuscmd/dwm-statuscmd-20210405-67d76bd.diff
 patch -i dwm-statuscmd-20210405-67d76bd.diff
 ```
 
 调整以适应 [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async)
 
-```sh
+```bash
 rg 'fp = popen' dwm.c
 sed -Ei 's/popen\("pidof -s "STATUSBAR/popen("pgrep -o "STATUSBAR/' ./dwm.c
 ```
@@ -71,7 +71,7 @@ dwm can now be restarted via MOD+CTRL+SHIFT+Q or by kill -HUP dwmpid
 
 In addition, a signal handler was added so that dwm cleanly quits by kill -TERM dwmpid.
 
-```sh
+```bash
 wget https://dwm.suckless.org/patches/restartsig/dwm-restartsig-20180523-6.2.diff
 patch -i dwm-restartsig-20180523-6.2.diff
 ```
@@ -92,14 +92,14 @@ follows the selected monitor.
 In case icons disappear when toggling the bar, try a different font size in
 dwm. This has helped at least in one case with pidgin.
 
-```sh
+```bash
 wget https://dwm.suckless.org/patches/systray/dwm-systray-6.3.diff
 patch -i ./dwm-systray-6.3.diff
 ```
 
 手动处理没有自动完成的补丁!
 
-```sh
+```bash
 git add .
 git commit -m "systray_adjust"
 ```
@@ -110,9 +110,16 @@ git commit -m "systray_adjust"
 
 # [awesomebar](https://dwm.suckless.org/patches/awesomebar/)
 
-```sh
+```bash
 wget https://dwm.suckless.org/patches/awesomebar/dwm-awesomebar-20200907-6.2.diff
 patch -i dwm-awesomebar-20200907-6.2.diff
+```
+
+存在冲突, 需要手动解决冲突。
+
+```bash
+git add .
+git commit -m "awesomebar"
 ```
 
 
