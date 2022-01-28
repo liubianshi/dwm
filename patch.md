@@ -84,6 +84,25 @@ git add .
 git commit -m "restartsig"
 ```
 
+# [systray](https://dwm.suckless.org/patches/systray/)
+
+A simple system tray implementation. Multi-monitor is also supported. The tray
+follows the selected monitor.
+
+In case icons disappear when toggling the bar, try a different font size in
+dwm. This has helped at least in one case with pidgin.
+
+```sh
+wget https://dwm.suckless.org/patches/systray/dwm-systray-6.3.diff
+patch -i ./dwm-systray-6.3.diff
+```
+
+手动处理没有自动完成的补丁!
+
+```sh
+git add .
+git commit -m "systray"
+```
 
 
 
