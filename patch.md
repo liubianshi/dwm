@@ -122,6 +122,19 @@ git add .
 git commit -m "awesomebar"
 ```
 
+# [actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
+
+Actually toggle fullscreen for a window, instead of toggling the status bar and
+the monocle layout.
+
+```bash
+wget 'https://dwm.suckless.org/patches/actualfullscreen/dwm-actualfullscreen-20191112-cb3f58a.diff'
+patch -i ./dwm-actualfullscreen-20191112-cb3f58a.diff
+git add .
+git commit -m "actualfullscreen"
+```
+
+
 
 
 
