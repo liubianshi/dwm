@@ -39,4 +39,30 @@ git add .
 git commit -m "focusurgent"
 ```
 
+## [statuscmd](https://dwm.suckless.org/patches/statuscmd/)
+
+This patch adds the ability to signal a status monitor program such as
+dwmblocks the location and button when clicking on the status bar.
+Alternatively, there is a version that executes shell commands defined in
+config.h instead of using signals.
+
+```sh
+wget https://dwm.suckless.org/patches/statuscmd/dwm-statuscmd-20210405-67d76bd.diff
+patch -i dwm-statuscmd-20210405-67d76bd.diff
+```
+
+调整以适应 [dwmblocks-async](https://github.com/UtkarshVerma/dwmblocks-async)
+
+```sh
+rg 'fp = popen' dwm.c
+sed -Ei 's/popen\("pidof -s "STATUSBAR/popen("pgrep -o "STATUSBAR/' ./dwm.c
+```
+
+保存修改
+
+```bash
+git add .
+git commit -m "patch statuscmd"
+```
+
 
