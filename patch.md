@@ -315,7 +315,18 @@ git add .
 git commit -m "patch swallow and urg-border"
 ```
 
+# [deck](https://dwm.suckless.org/patches/deck/)
 
+deck is a dwm-layout which is inspired by the TTWM window manager. It applies
+the monocle-layout to the clients in the stack. The master-client is still
+visible. The stacked clients are like a deck of cards, hence the name.
 
+实际上 vanitygaps 已经包含了各种 layout 模式了，其中包含了 deck
 
+# [pango](https://dwm.suckless.org/patches/pango/)
+
+```bash
+wget https://dwm.suckless.org/patches/pango/dwm-pango-20201020-519f869.diff
+patch < ./dwm-pango-20201020-519f869.diff
+```
 

@@ -8,8 +8,8 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
-static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
+static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
+static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -58,33 +58,34 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-	/* class          instance    title       tags mask     isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1 },
-	{ "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1 },
-	{ "St",           NULL,       NULL,       0,            0,          1,           0,        -1 },
-	{ "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1 },
-	{ NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1 }, /* xev */
-    { "fzfmenu",      NULL,       NULL,       0,            1,          0,           1,        -1 },
-    { "Xfce4-appfinder", NULL,    NULL,       0,            1,          0,           1,        -1 },
-    { "VirtualBox Machine", NULL, NULL,       0,            1,          0,           1,        -1 },
-    { "ncmpcpp",      NULL,       NULL,       0,            1,          0,           1,        -1 },
-    { "blueman-manager", NULL,    NULL,       0,            1,          0,           1,        -1 },
-    { NULL, "netease-cloud-music-gtk",  NULL, 0,            1,          0,           1,        -1 },
-    { NULL, "netease-cloud-music",      NULL, 0,            1,          0,           1,        -1 },
-    { "Zotero",       NULL,       NULL,       1 << 3,       0,          0,           0,        -1 },
-    { "Okular",       NULL,       NULL,       1 << 5,       0,          0,           0,        -1 },
-    { "Wps",          NULL,       NULL,       1 << 2,       0,          0,           0,        -1 },
-    { "Steam",        NULL,       NULL,       1 << 6,       0,          0,           0,        -1 },
-    { "TelegramDesktop", NULL,    NULL,       1 << 6,       0,          0,           0,        -1 },
-    { "Vmplayer",     NULL,       NULL,       1 << 7,       0,          0,           0,        -1 },
-    { "Zenity",       NULL,       NULL,       0,            1,          0,           1,        -1 },
-    { "Display", "display",       NULL,       0,            1,          0,           1,        -1 },
-    { "scrcpy",   "scrcpy",       NULL,       1 << 6,       1,          0,           1,        -1 },
-    { "Emacs", "emacs", "doom-capture",       0,            1,          0,           1,        -1 },
-    { "copyq",        NULL,       NULL,       0,            1,          0,           1,        -1 },
-    { "R_x11",        NULL,       NULL,       0,            1,          0,           1,        -1 },
-    { "qutebrowser",  NULL,       NULL,       1 << 1,       0,          0,          -1,        -1 },
-    { "Brave-browser", NULL,      NULL,       1 << 1,       0,          0,          -1,        -1 },
+	/* class          instance    title       tags mask     isfloating  isterminal  noswallow  monitor scratch key*/
+	{ "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1,     0},
+	{ "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1      0},
+	{ "St",           NULL,       NULL,       0,            0,          1,           0,        -1      0},
+	{ "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1      0},
+	{ NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1      0}, /* xev */
+    { "fzfmenu",      NULL,       NULL,       0,            1,          0,           1,        -1      0},
+    { "Xfce4-appfinder", NULL,    NULL,       0,            1,          0,           1,        -1      0},
+    { "VirtualBox Machine", NULL, NULL,       0,            1,          0,           1,        -1      0},
+    { "ncmpcpp",      NULL,       NULL,       0,            1,          0,           1,        -1      0},
+    { "blueman-manager", NULL,    NULL,       0,            1,          0,           1,        -1      0},
+    { NULL, "netease-cloud-music-gtk",  NULL, 0,            1,          0,           1,        -1      0},
+    { NULL, "netease-cloud-music",      NULL, 0,            1,          0,           1,        -1      0},
+    { "Zotero",       NULL,       NULL,       1 << 3,       0,          0,           0,        -1      0},
+    { "Okular",       NULL,       NULL,       1 << 5,       0,          0,           0,        -1      0},
+    { "Wps",          NULL,       NULL,       1 << 2,       0,          0,           0,        -1      0},
+    { "Steam",        NULL,       NULL,       1 << 6,       0,          0,           0,        -1      0},
+    { "TelegramDesktop", NULL,    NULL,       1 << 6,       0,          0,           0,        -1      0},
+    { "Vmplayer",     NULL,       NULL,       1 << 7,       0,          0,           0,        -1      0},
+    { "Zenity",       NULL,       NULL,       0,            1,          0,           1,        -1      0},
+    { "Display", "display",       NULL,       0,            1,          0,           1,        -1      0},
+    { "scrcpy",   "scrcpy",       NULL,       1 << 6,       1,          0,           1,        -1      0},
+    { "Emacs", "emacs", "doom-capture",       0,            1,          0,           1,        -1      0},
+    { "copyq",        NULL,       NULL,       0,            1,          0,           1,        -1      0},
+    { "R_x11",        NULL,       NULL,       0,            1,          0,           1,        -1      0},
+    { "qutebrowser",  NULL,       NULL,       1 << 1,       0,          0,          -1,        -1      0},
+    { "Brave-browser", NULL,      NULL,       1 << 1,       0,          0,          -1,        -1      0},
+    { NULL,           NULL,     "scratchpad", 0,            1,          1,          -1,        -1      's'},
 };
 
 /* layout(s) */
@@ -107,6 +108,13 @@ static const Layout layouts[] = {
     { "|M|",      centeredmaster },
     { ">M>",      centeredfloatingmaster },
     { "[D]",      deck },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
+	{ "HHH",      grid },
+	{ "###",      nrowgrid },
+	{ "---",      horizgrid },
+	{ ":::",      gaplessgrid },
+	{ NULL,       NULL },
 };
 
 /* key definitions */

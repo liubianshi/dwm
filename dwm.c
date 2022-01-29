@@ -1024,7 +1024,7 @@ drawbar(Monitor *m)
 		}
 		tw = TEXTW(text) - lrpad;
 		drw_text(drw, m->ww - statusw + x - stw, 0, tw, bh, 0, text, 0);
-		tw = statusw;
+		tw = statusw + 2;
 	}
 
     resizebarwin(m);
