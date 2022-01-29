@@ -284,5 +284,38 @@ git commit -m "multipledynamicscratchpads"
 ```
 
 
+# [swallow](https://dwm.suckless.org/patches/swallow/)
+
+This patch adds "window swallowing" to dwm as known from Plan 9's windowing
+system rio.
+
+Clients marked with isterminal in config.h swallow a window opened by any child
+process, e.g. running xclock in a terminal. Closing the xclock window restores
+the terminal window in the current position.
+
+This patch helps users spawning a lot of graphical programs from their command
+line by avoiding cluttering the screen with many unusable terminals. Being deep
+down in a directory hierarchy just does not make the use of dmenu feasible.
+
+```bash
+wget https://dwm.suckless.org/patches/swallow/dwm-swallow-20201211-61bb8b2.diff
+patch < ./dwm-swallow-20201211-61bb8b2.diff
+```
+
+# [custom urgent border](https://dwm.suckless.org/patches/urgentborder/)
+
+
+This patch makes borders of "urgent" windows a different color. By default it
+is bright red. Use config.h item "urgbordercolor" to change it.
+
+```bash
+wget https://dwm.suckless.org/patches/urgentborder/dwm-6.2-urg-border.diff
+patch < ./dwm-6.2-urg-border.diff
+git add .
+git commit -m "patch swallow and urg-border"
+```
+
+
+
 
 

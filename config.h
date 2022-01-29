@@ -4,6 +4,7 @@
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 18;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
@@ -176,8 +177,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_bracketright, focusstackhid,    {.i = +1 } },
     { MODKEY,                       XK_bracketright, hide,       {0} },
     { MODKEY,                       XK_bracketleft,  show,       {0} },
-	{ MODKEY|AltMask,               XK_j,        rotatestack,    {.i = +1 } },
-	{ MODKEY|AltMask,               XK_k,        rotatestack,    {.i = -1 } },
+	{ MODKEY|Mod1Mask,              XK_j,        rotatestack,    {.i = +1 } },
+	{ MODKEY|Mod1Mask,              XK_k,        rotatestack,    {.i = -1 } },
 
     { MODKEY,                       XK_Left,     focusmon,       {.i = -1 } },
     { MODKEY,                       XK_Right,    focusmon,       {.i = +1 } },
