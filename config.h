@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 18;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -59,33 +59,33 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
 	/* class          instance    title       tags mask     isfloating  isterminal  noswallow  monitor scratch key*/
-	{ "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1,     0},
-	{ "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1      0},
-	{ "St",           NULL,       NULL,       0,            0,          1,           0,        -1      0},
-	{ "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1      0},
-	{ NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1      0}, /* xev */
-    { "fzfmenu",      NULL,       NULL,       0,            1,          0,           1,        -1      0},
-    { "Xfce4-appfinder", NULL,    NULL,       0,            1,          0,           1,        -1      0},
-    { "VirtualBox Machine", NULL, NULL,       0,            1,          0,           1,        -1      0},
-    { "ncmpcpp",      NULL,       NULL,       0,            1,          0,           1,        -1      0},
-    { "blueman-manager", NULL,    NULL,       0,            1,          0,           1,        -1      0},
-    { NULL, "netease-cloud-music-gtk",  NULL, 0,            1,          0,           1,        -1      0},
-    { NULL, "netease-cloud-music",      NULL, 0,            1,          0,           1,        -1      0},
-    { "Zotero",       NULL,       NULL,       1 << 3,       0,          0,           0,        -1      0},
-    { "Okular",       NULL,       NULL,       1 << 5,       0,          0,           0,        -1      0},
-    { "Wps",          NULL,       NULL,       1 << 2,       0,          0,           0,        -1      0},
-    { "Steam",        NULL,       NULL,       1 << 6,       0,          0,           0,        -1      0},
-    { "TelegramDesktop", NULL,    NULL,       1 << 6,       0,          0,           0,        -1      0},
-    { "Vmplayer",     NULL,       NULL,       1 << 7,       0,          0,           0,        -1      0},
-    { "Zenity",       NULL,       NULL,       0,            1,          0,           1,        -1      0},
-    { "Display", "display",       NULL,       0,            1,          0,           1,        -1      0},
-    { "scrcpy",   "scrcpy",       NULL,       1 << 6,       1,          0,           1,        -1      0},
-    { "Emacs", "emacs", "doom-capture",       0,            1,          0,           1,        -1      0},
-    { "copyq",        NULL,       NULL,       0,            1,          0,           1,        -1      0},
-    { "R_x11",        NULL,       NULL,       0,            1,          0,           1,        -1      0},
-    { "qutebrowser",  NULL,       NULL,       1 << 1,       0,          0,          -1,        -1      0},
-    { "Brave-browser", NULL,      NULL,       1 << 1,       0,          0,          -1,        -1      0},
-    { NULL,           NULL,     "scratchpad", 0,            1,          1,          -1,        -1      's'},
+	{ "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1,      0},
+	{ "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1,      0},
+	{ "St",           NULL,       NULL,       0,            0,          1,           0,        -1,      0},
+	{ "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1,      0},
+	{ NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1,      0}, /* xev */
+    { "fzfmenu",      NULL,       NULL,       0,            1,          0,           1,        -1,      0},
+    { "Xfce4-appfinder", NULL,    NULL,       0,            1,          0,           1,        -1,      0},
+    { "VirtualBox Machine", NULL, NULL,       0,            1,          0,           1,        -1,      0},
+    { "ncmpcpp",      NULL,       NULL,       0,            1,          0,           1,        -1,      0},
+    { "blueman-manager", NULL,    NULL,       0,            1,          0,           1,        -1,      0},
+    { NULL, "netease-cloud-music-gtk",  NULL, 0,            1,          0,           1,        -1,      0},
+    { NULL, "netease-cloud-music",      NULL, 0,            1,          0,           1,        -1,      0},
+    { "Zotero",       NULL,       NULL,       1 << 3,       0,          0,           0,        -1,      0},
+    { "Okular",       NULL,       NULL,       1 << 5,       0,          0,           0,        -1,      0},
+    { "Wps",          NULL,       NULL,       1 << 2,       0,          0,           0,        -1,      0},
+    { "Steam",        NULL,       NULL,       1 << 6,       0,          0,           0,        -1,      0},
+    { "TelegramDesktop", NULL,    NULL,       1 << 6,       0,          0,           0,        -1,      0},
+    { "Vmplayer",     NULL,       NULL,       1 << 7,       0,          0,           0,        -1,      0},
+    { "Zenity",       NULL,       NULL,       0,            1,          0,           1,        -1,      0},
+    { "Display", "display",       NULL,       0,            1,          0,           1,        -1,      0},
+    { "scrcpy",   "scrcpy",       NULL,       1 << 6,       1,          0,           1,        -1,      0},
+    { "Emacs", "emacs", "doom-capture",       0,            1,          0,           1,        -1,      0},
+    { "copyq",        NULL,       NULL,       0,            1,          0,           1,        -1,      0},
+    { "R_x11",        NULL,       NULL,       0,            1,          0,           1,        -1,      0},
+    { "qutebrowser",  NULL,       NULL,       1 << 1,       0,          0,          -1,        -1,      0},
+    { "Brave-browser", NULL,      NULL,       1 << 1,       0,          0,          -1,        -1,      0},
+    { NULL,           NULL,     "scratchpad", 0,            1,          0,          -1,        -1,    's'},
 };
 
 /* layout(s) */
@@ -141,7 +141,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan2, "-sf", col_gray1, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "a", "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=127", "window.dimensions.lines=20", NULL };
+// static const char *scratchpadcmd[] = { "s", "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=127", "window.dimensions.lines=20", NULL };
+static const char *scratchpadcmd[] = { "s", "st", "-t", scratchpadname, "-g", "127x20+350+10", NULL };
 static Key keys[] = {
     /* modifier                      key        function        argument */
     STACKKEYS(MODKEY,                focus)
@@ -158,8 +159,8 @@ static Key keys[] = {
     { MODKEY,                        XK_0,      view,           {.ui = ~0 } },
     { MODKEY|ShiftMask,              XK_0,      tag,            {.ui = ~0 } },
     { MODKEY,                        XK_q,      killclient,     {0} },
-    { MODKEY|ShiftMask,              XK_q,      quit,           {1} },
-    { MODKEY|ControlMask|ShiftMask,  XK_q,      quit,           {0} },
+    { MODKEY|ShiftMask,              XK_q,      quit,           {0} },
+    { MODKEY|ControlMask|ShiftMask,  XK_q,      quit,           {1} },
     { MODKEY,                        XK_r,      spawn,          {.v = dmenucmd } },
     { MODKEY,                        XK_f,      togglefullscr,  {0} },
     { MODKEY,                        XK_space,  zoom,           {0} },

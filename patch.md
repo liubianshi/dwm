@@ -330,3 +330,14 @@ wget https://dwm.suckless.org/patches/pango/dwm-pango-20201020-519f869.diff
 patch < ./dwm-pango-20201020-519f869.diff
 ```
 
+打补丁的难度非常高，而且是破坏性的，同时，他也没有什么特别的功能，所以不值得安装。
+
+# [status2d](https://dwm.suckless.org/patches/status2d/)
+
+能够在 status bar 输出不同的颜色.
+
+```bash
+wget https://dwm.suckless.org/patches/status2d/dwm-status2d-6.2.diff
+patch < ./dwm-status2d-6.2.diff
+```
+
