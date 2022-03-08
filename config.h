@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 18;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -12,7 +12,7 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const unsigned int systrayspacing = 16;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
@@ -83,9 +83,11 @@ static const Rule rules[] = {
     { "Emacs", "emacs", "doom-capture",       0,            1,          0,           1,        -1,      0},
     { "copyq",        NULL,       NULL,       0,            1,          0,           1,        -1,      0},
     { "R_x11",        NULL,       NULL,       0,            1,          0,           1,        -1,      0},
+    { "flameshot", "flameshot",   NULL,       0,            1,          0,           1,        -1,      0},
     { "qutebrowser",  NULL,       NULL,       1 << 1,       0,          0,          -1,        -1,      0},
     { "Brave-browser", NULL,      NULL,       1 << 1,       0,          0,          -1,        -1,      0},
-    { NULL,           NULL,     "scratchpad", 0,            1,          0,          -1,        -1,    's'},
+    { NULL,  NULL,        "scratchpad",       0,            1,          0,          -1,        -1,    's'},
+    { NULL,  NULL,      "Live Caption",       0,            1,          0,           1,        -1,      0},
 };
 
 /* layout(s) */
@@ -142,7 +144,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 // static const char *scratchpadcmd[] = { "s", "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=127", "window.dimensions.lines=20", NULL };
-static const char *scratchpadcmd[] = { "s", "st", "-t", scratchpadname, "-g", "127x20+350+10", NULL };
+static const char *scratchpadcmd[] = { "s", "st", "-t", scratchpadname, "-g", "127x20+750+43", NULL };
 static Key keys[] = {
     /* modifier                      key        function        argument */
     STACKKEYS(MODKEY,                focus)
