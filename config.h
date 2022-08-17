@@ -196,9 +196,9 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_Left,     tagmon,         {.i = -1 } },
     { MODKEY|ShiftMask,             XK_Right,    tagmon,         {.i = +1 } },
 
-	{ MODKEY,                       XK_s,         scratchpad_show, {.i = 1} },
-	{ MODKEY|ShiftMask,             XK_s,         scratchpad_hide, {.i = 1} },
-	{ MODKEY|Mod1Mask,              XK_s,         scratchpad_remove,    {0} },
+	{ MODKEY,                       XK_minus,    scratchpad_show,   {0} },
+	{ MODKEY|ShiftMask,             XK_minus,    scratchpad_hide,   {0} },
+	{ MODKEY|Mod1Mask,              XK_minus,    scratchpad_remove, {0} },
 };
 
 /* button definitions */
