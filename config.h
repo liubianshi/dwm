@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 18;       /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
@@ -196,14 +196,9 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_Left,     tagmon,         {.i = -1 } },
     { MODKEY|ShiftMask,             XK_Right,    tagmon,         {.i = +1 } },
 
-	{ MODKEY,                       XK_u,       focusurgent,     {0} },
-	{ MODKEY,                       XK_s,       scratchpad_show, {.i = 1} },
-	{ MODKEY,                       XK_y,       scratchpad_show, {.i = 2} },
-	{ MODKEY,                       XK_u,       scratchpad_show, {.i = 3} },
-	{ MODKEY|ShiftMask,             XK_s,       scratchpad_hide, {.i = 1} },
-	{ MODKEY|ShiftMask,             XK_y,       scratchpad_hide, {.i = 2} },
-	{ MODKEY|ShiftMask,             XK_u,       scratchpad_hide, {.i = 3} },
-	{ MODKEY|ShiftMask,             XK_r,       scratchpad_remove,    {0} },
+	{ MODKEY,                       XK_s,         scratchpad_show, {.i = 1} },
+	{ MODKEY|ShiftMask,             XK_s,         scratchpad_hide, {.i = 1} },
+	{ MODKEY|Mod1Mask,              XK_s,         scratchpad_remove,    {0} },
 };
 
 /* button definitions */
@@ -277,6 +272,7 @@ static Signal signals[] = {
 	{ "focusmon",       focusmon },
 	{ "focusstack",     focusstackvis },
 	{ "focusurgent",    focusurgent }, 
+    { "pushstack",      pushstack},
     { "incrgaps",       incrgaps },    /* increase all gaps */
     { "incrigaps",      incrigaps },   /* increase  inner gaps */
     { "incrihgaps",     incrihgaps },  /* increase inner horizontal gaps */
@@ -306,3 +302,5 @@ static Signal signals[] = {
 	{ "viewex",         viewex },
 	{ "zoom",           zoom },
 };
+
+// vim: ft=c
