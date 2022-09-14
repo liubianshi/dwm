@@ -266,12 +266,12 @@ static void rotatestack(const Arg *arg);
 static void run(void);
 static void runautostart(void);
 static void scan(void);
-static void scratchpad_hide();
+static void scratchpad_hide ();
 static _Bool scratchpad_last_showed_is_killed (void);
-static void scratchpad_remove();
-static void scratchpad_show();
-static void scratchpad_show_client(Client *c);
-static void scratchpad_show_first();
+static void scratchpad_remove ();
+static void scratchpad_show ();
+static void scratchpad_show_client (Client *c);
+static void scratchpad_show_first (void);
 static int sendevent(Window w, Atom proto, int m, long d0, long d1, long d2, long d3, long d4);
 static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
@@ -438,7 +438,7 @@ applyrules(Client *c)
 		XFree(ch.res_name);
 
     if (c->tags != SCRATCHPAD_MASK) {
-	    c->tags = c->tags & TAGMASK ? c->tags & TAGMASK : c->mon->tagset[c->mon->seltags];
+        c->tags = c->tags & TAGMASK ? c->tags & TAGMASK : c->mon->tagset[c->mon->seltags];
     }   
 }
 
@@ -2295,8 +2295,6 @@ static void scratchpad_show ()
 		}
 	}
 }
-
-
 
 static void scratchpad_show_client (Client * c)
 {

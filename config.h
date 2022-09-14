@@ -11,7 +11,7 @@ static const unsigned int gappoh    = 10;       /* horiz outer gap between windo
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 16;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
@@ -58,12 +58,12 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-	/* class          instance    title       tags mask     isfloating  isterminal  noswallow  monitor scratch key*/
-	{ "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1,      0},
-	{ "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1,      0},
-	{ "St",           NULL,       NULL,       0,            0,          1,           0,        -1,      0},
-	{ "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1,      0},
-	{ NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1,      0}, /* xev */
+    /* class          instance    title       tags mask     isfloating  isterminal  noswallow  monitor scratch key*/
+    { "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1,      0},
+    { "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1,      0},
+    { "St",           NULL,       NULL,       0,            0,          1,           0,        -1,      0},
+    { "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1,      0},
+    { NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1,      0}, /* xev */
     { "fzfmenu",      NULL,       NULL,       0,            1,          0,           1,        -1,      0},
     { "Xfce4-appfinder", NULL,    NULL,       0,            1,          0,           1,        -1,      0},
     { "VirtualBox Machine", NULL, NULL,       0,            1,          0,           1,        -1,      0},
@@ -110,13 +110,13 @@ static const Layout layouts[] = {
     { "|M|",      centeredmaster },
     { ">M>",      centeredfloatingmaster },
     { "[D]",      deck },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
-	{ "HHH",      grid },
-	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ NULL,       NULL },
+    { "TTT",      bstack },
+    { "===",      bstackhoriz },
+    { "HHH",      grid },
+    { "###",      nrowgrid },
+    { "---",      horizgrid },
+    { ":::",      gaplessgrid },
+    { NULL,       NULL },
 };
 
 /* key definitions */
@@ -188,90 +188,90 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_bracketright, focusstackhid,    {.i = +1 } },
     { MODKEY,                       XK_bracketright, hide,       {0} },
     { MODKEY,                       XK_bracketleft,  show,       {0} },
-	{ MODKEY|Mod1Mask,              XK_j,        rotatestack,    {.i = +1 } },
-	{ MODKEY|Mod1Mask,              XK_k,        rotatestack,    {.i = -1 } },
+    { MODKEY|Mod1Mask,              XK_j,        rotatestack,    {.i = +1 } },
+    { MODKEY|Mod1Mask,              XK_k,        rotatestack,    {.i = -1 } },
 
     { MODKEY,                       XK_Left,     focusmon,       {.i = -1 } },
     { MODKEY,                       XK_Right,    focusmon,       {.i = +1 } },
     { MODKEY|ShiftMask,             XK_Left,     tagmon,         {.i = -1 } },
     { MODKEY|ShiftMask,             XK_Right,    tagmon,         {.i = +1 } },
 
-	{ MODKEY,                       XK_minus,    scratchpad_show,   {0} },
-	{ MODKEY|ShiftMask,             XK_minus,    scratchpad_hide,   {0} },
-	{ MODKEY|Mod1Mask,              XK_minus,    scratchpad_remove, {0} },
+    { MODKEY,                       XK_s,    scratchpad_show,   {0} },
+    { MODKEY|ShiftMask,             XK_s,    scratchpad_hide,   {0} },
+    { MODKEY|Mod1Mask,              XK_s,    scratchpad_remove, {0} },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
-	/* click                event mask      button          function        argument */
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
-	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
-	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+    /* click                event mask      button          function        argument */
+    { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+    { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+    { ClkWinTitle,          0,              Button1,        togglewin,      {0} },
+    { ClkWinTitle,          0,              Button2,        zoom,           {0} },
+    { ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
+    { ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
+    { ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
+    { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+    { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+    { ClkTagBar,            0,              Button1,        view,           {0} },
+    { ClkTagBar,            0,              Button3,        toggleview,     {0} },
+    { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+    { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
 void
 setlayoutex(const Arg *arg)
 {
-	setlayout(&((Arg) { .v = &layouts[arg->i] }));
+    setlayout(&((Arg) { .v = &layouts[arg->i] }));
 }
 
 void
 viewex(const Arg *arg)
 {
-	view(&((Arg) { .ui = 1 << arg->ui }));
+    view(&((Arg) { .ui = 1 << arg->ui }));
 }
 
 void
 viewall(const Arg *arg)
 {
-	view(&((Arg){.ui = ~0}));
+    view(&((Arg){.ui = ~0}));
 }
 
 void
 toggleviewex(const Arg *arg)
 {
-	toggleview(&((Arg) { .ui = 1 << arg->ui }));
+    toggleview(&((Arg) { .ui = 1 << arg->ui }));
 }
 
 void
 tagex(const Arg *arg)
 {
-	tag(&((Arg) { .ui = 1 << arg->ui }));
+    tag(&((Arg) { .ui = 1 << arg->ui }));
 }
 
 void
 toggletagex(const Arg *arg)
 {
-	toggletag(&((Arg) { .ui = 1 << arg->ui }));
+    toggletag(&((Arg) { .ui = 1 << arg->ui }));
 }
 
 void
 tagall(const Arg *arg)
 {
-	tag(&((Arg){.ui = ~0}));
+    tag(&((Arg){.ui = ~0}));
 }
 
 /* signal definitions */
 /* signum must be greater than 0 */
 /* trigger signals using `xsetroot -name "fsignal:<signame> [<type> <value>]"` */
 static Signal signals[] = {
-	/* signum           function */
+    /* signum           function */
     { "defaultgaps",    defaultgaps }, /* reset gaps back to default */
-	{ "focusmon",       focusmon },
-	{ "focusstack",     focusstackvis },
-	{ "focusurgent",    focusurgent }, 
+    { "focusmon",       focusmon },
+    { "focusstack",     focusstackvis },
+    { "focusurgent",    focusurgent }, 
     { "pushstack",      pushstack},
     { "incrgaps",       incrgaps },    /* increase all gaps */
     { "incrigaps",      incrigaps },   /* increase  inner gaps */
@@ -280,27 +280,27 @@ static Signal signals[] = {
     { "incrogaps",      incrogaps },   /* increase outer gaps */
     { "incrohgaps",     incrohgaps },  /* increase outer horizontal gaps */
     { "incrovgaps",     incrovgaps },  /* increase outer vertical gaps */
-	{ "incnmaster",     incnmaster },
-	{ "killclient",     killclient },
-	{ "quit",           quit },
-	{ "setlayout",      setlayout },
-	{ "setlayoutex",    setlayoutex },
-	{ "setmfact",       setmfact },
-	{ "tag",            tag },
-	{ "tagall",         tagall },
-	{ "tagex",          tagex },
-	{ "togglebar",      togglebar },
-	{ "togglefloating", togglefloating },
+    { "incnmaster",     incnmaster },
+    { "killclient",     killclient },
+    { "quit",           quit },
+    { "setlayout",      setlayout },
+    { "setlayoutex",    setlayoutex },
+    { "setmfact",       setmfact },
+    { "tag",            tag },
+    { "tagall",         tagall },
+    { "tagex",          tagex },
+    { "togglebar",      togglebar },
+    { "togglefloating", togglefloating },
     { "togglegaps",     togglegaps },  /* toggle gaps on and off */
-	{ "toggletag",      tag },
-	{ "toggletagex",    toggletagex },
-	{ "toggleview",     view },
-	{ "toggleviewex",   toggleviewex },
-	{ "tagmon",         tagmon },
-	{ "view",           view },
-	{ "viewall",        viewall },
-	{ "viewex",         viewex },
-	{ "zoom",           zoom },
+    { "toggletag",      tag },
+    { "toggletagex",    toggletagex },
+    { "toggleview",     view },
+    { "toggleviewex",   toggleviewex },
+    { "tagmon",         tagmon },
+    { "view",           view },
+    { "viewall",        viewall },
+    { "viewex",         viewex },
+    { "zoom",           zoom },
 };
 
 // vim: ft=c
