@@ -1,27 +1,27 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 18;       /* gap pixel between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
-static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int borderpx       = 3;    /* border pixel of windows */
+static const unsigned int gappx          = 18;   /* gap pixel between windows */
+static const unsigned int snap           = 32;   /* snap pixel */
+static const int swallowfloating         = 0;    /* 1 means swallow floating windows by default */
+static const unsigned int gappih         = 10;   /* horiz inner gap between windows */
+static const unsigned int gappiv         = 10;   /* vert inner gap between windows */
+static const unsigned int gappoh         = 10;   /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov         = 10;   /* vert outer gap between windows and screen edge */
+static       int smartgaps               = 0;    /* 1 means no outer gap when there is only one window */
+static const unsigned int systraypinning = 0;    /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft  = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 16;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
-static const int showbar            = 1;     /* 0 means no bar */
-static const int topbar             = 1;     /* 0 means bottom bar */
-static const Bool viewontag         = True;     /* Switch view on tag switch */
+static const int systraypinningfailfirst = 1;    /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray             = 1;    /* 0 means no systray */
+static const int showbar                 = 1;    /* 0 means no bar */
+static const int topbar                  = 1;    /* 0 means bottom bar */
+static const Bool viewontag              = True; /* Switch view on tag switch */
 
 static const char *fonts[]          = { 
     "FiraCode Nerd Font Mono:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
-    "WenQuanYi Micro Hei Mono:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
+    "LXGW WenKai Mono:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
     "Noto Color Emoji:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
     "JoyPixels:pixelsize=24:antialias=true:autohint=true:hintstyle:hintslight",
 };
@@ -31,7 +31,6 @@ static const char dmenufont[]       = "monospace:pixelsize=24:antialias=true:aut
 #if __has_include(wal)
 #include wal
 #else
-static const char *colors[][3]      = {
 static const char col_gray1[] = "#031B29";
 static const char col_gray2[] = "#909188";
 static const char col_gray3[] = "#ced0c3";
@@ -58,36 +57,40 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class          instance    title       tags mask     isfloating  isterminal  noswallow  monitor scratch key*/
-    { "Gimp",         NULL,       NULL,       0,            1,          0,           0,        -1,      0},
-    { "Firefox",      NULL,       NULL,       1 << 8,       0,          0,          -1,        -1,      0},
-    { "St",           NULL,       NULL,       0,            0,          1,           0,        -1,      0},
-    { "Alacritty",    NULL,       NULL,       0,            0,          1,           0,        -1,      0},
-    { NULL,           NULL,  "Event Tester",  0,            1,          0,           1,        -1,      0}, /* xev */
-    { "fzfmenu",      NULL,       NULL,       0,            1,          0,           1,        -1,      0},
-    { "Xfce4-appfinder", NULL,    NULL,       0,            1,          0,           1,        -1,      0},
-    { "VirtualBox Machine", NULL, NULL,       0,            1,          0,           1,        -1,      0},
-    { "ncmpcpp",      NULL,       NULL,       0,            1,          0,           1,        -1,      0},
-    { "blueman-manager", NULL,    NULL,       0,            1,          0,           1,        -1,      0},
-    { NULL, "netease-cloud-music-gtk",  NULL, 0,            1,          0,           1,        -1,      0},
-    { NULL, "netease-cloud-music",      NULL, 0,            1,          0,           1,        -1,      0},
-    { "Zotero",       NULL,       NULL,       1 << 3,       0,          0,           0,        -1,      0},
-    { "Okular",       NULL,       NULL,       1 << 5,       0,          0,           0,        -1,      0},
-    { "Wps",          NULL,       NULL,       1 << 2,       0,          0,           0,        -1,      0},
-    { "Steam",        NULL,       NULL,       1 << 6,       0,          0,           0,        -1,      0},
-    { "TelegramDesktop", NULL,    NULL,       1 << 6,       0,          0,           0,        -1,      0},
-    { "Vmplayer",     NULL,       NULL,       1 << 7,       0,          0,           0,        -1,      0},
-    { "Zenity",       NULL,       NULL,       0,            1,          0,           1,        -1,      0},
-    { "Display", "display",       NULL,       0,            1,          0,           1,        -1,      0},
-    { "scrcpy",   "scrcpy",       NULL,       1 << 6,       1,          0,           1,        -1,      0},
-    { "Emacs", "emacs", "doom-capture",       0,            1,          0,           1,        -1,      0},
-    { "copyq",        NULL,       NULL,       0,            1,          0,           1,        -1,      0},
-    { "R_x11",        NULL,       NULL,       0,            1,          0,           1,        -1,      0},
-    { "flameshot", "flameshot",   NULL,       0,            1,          0,           1,        -1,      0},
-    { "qutebrowser",  NULL,       NULL,       1 << 1,       0,          0,          -1,        -1,      0},
-    { "Brave-browser", NULL,      NULL,       1 << 1,       0,          0,          -1,        -1,      0},
-    { NULL,  NULL,        "scratchpad",       0,            1,          0,          -1,        -1,    's'},
-    { NULL,  NULL,      "Live Caption",       0,            1,          0,           1,        -1,      0},
+    /* class,               instance,                  title,          tags mask, isfloating, isterminal, noswallow, monitor, scratch, key*/
+    { "Gimp",               NULL,                      NULL,           0,         1,          0,          0,         -1,      0},
+	{ "PureRef",            "PureRef",                 NULL,           0,         1,          0,          0,         -1,      0},
+    { "Firefox",            NULL,                      NULL,           1 << 8,    0,          0,          -1,        -1,      0},
+    { "St",                 NULL,                      NULL,           0,         0,          1,          0,         -1,      0},
+    { "st-256color",        NULL,                      NULL,           0,         0,          1,          0,         -1,      0},
+    { "Alacritty",          NULL,                      NULL,           0,         0,          1,          0,         -1,      0},
+    { NULL,                 NULL,                      "Event Tester", 0,         1,          0,          1,         -1,      0},      /* xev */
+    { "fzfmenu",            NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "Xfce4-appfinder",    NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "VirtualBox Machine", NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "ncmpcpp",            NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "blueman-manager",    NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { NULL,                 "netease-cloud-music-gtk", NULL,           0,         1,          0,          1,         -1,      0},
+    { NULL,                 "netease-cloud-music",     NULL,           0,         1,          0,          1,         -1,      0},
+    { "Zotero",             NULL,                      NULL,           1 << 3,    0,          0,          0,         -1,      0},
+    { "Okular",             NULL,                      NULL,           1 << 5,    0,          0,          0,         -1,      0},
+    { "Wps",                NULL,                      NULL,           1 << 2,    0,          0,          0,         -1,      0},
+    { "Steam",              NULL,                      NULL,           1 << 6,    0,          0,          0,         -1,      0},
+    { "TelegramDesktop",    NULL,                      NULL,           1 << 6,    0,          0,          0,         -1,      0},
+    { "Vmplayer",           NULL,                      NULL,           1 << 7,    0,          0,          0,         -1,      0},
+    { "Zenity",             NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "GoldenDict",         "goldendict",              NULL,           0,         1,          0,          1,         -1,      0},
+    { "Display",            "display",                 NULL,           0,         1,          0,          1,         -1,      0},
+    { "scrcpy",             "scrcpy",                  NULL,           1 << 6,    1,          0,          1,         -1,      0},
+    { "xfreerdp",           "xfreerdp",                NULL,           1 << 7,    1,          0,          1,         -1,      0},
+    { "Emacs",              "emacs",                   "doom-capture", 0,         1,          0,          1,         -1,      0},
+    { "copyq",              NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "R_x11",              NULL,                      NULL,           0,         1,          0,          1,         -1,      0},
+    { "flameshot",          "flameshot",               NULL,           0,         1,          0,          1,         -1,      0},
+    { "qutebrowser",        NULL,                      NULL,           1 << 1,    0,          0,          -1,        -1,      0},
+    { "Brave-browser",      NULL,                      NULL,           1 << 1,    0,          0,          -1,        -1,      0},
+    { NULL,                 NULL,                      "scratchpad",   0,         1,          0,          -1,        -1,      's'},
+    { NULL,                 NULL,                      "Live Caption", 0,         1,          0,          1,         -1,      0},
 };
 
 /* layout(s) */
