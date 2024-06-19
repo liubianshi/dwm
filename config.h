@@ -19,8 +19,12 @@ static const int showbar                 = 1;    /* 0 means no bar */
 static const int topbar                  = 1;    /* 0 means bottom bar */
 static const Bool viewontag              = True; /* Switch view on tag switch */
 
+/* mouse scroll resize */
+static const int scrollsensetivity = 30; /* 1 means resize window by 1 pixel for each scroll event */
+
+
 static const char *fonts[]          = { 
-    "FiraCode Nerd Font Mono:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
+    "Maple Mono NF:pixelsize=22:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
     "LXGW WenKai Mono:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
     "Noto Color Emoji:pixelsize=24:antialias=true:autohint:false:hint:ture:hintstyle:hintslight",
     "JoyPixels:pixelsize=24:antialias=true:autohint=true:hintstyle:hintslight",
@@ -147,7 +151,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 // static const char *scratchpadcmd[] = { "s", "alacritty", "-t", scratchpadname, "-o", "window.dimensions.columns=127", "window.dimensions.lines=20", NULL };
-static const char *scratchpadcmd[] = { "s", "st", "-t", scratchpadname, "-g", "127x20+750+43", NULL };
+static const char *scratchpadcmd[] = { "s", "st", "-t", scratchpadname, "-g", "127x20+350+40", NULL };
 static Key keys[] = {
     /* modifier                      key        function        argument */
     STACKKEYS(MODKEY,                focus)
@@ -194,14 +198,27 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,              XK_j,        rotatestack,    {.i = +1 } },
     { MODKEY|Mod1Mask,              XK_k,        rotatestack,    {.i = -1 } },
 
-    { MODKEY,                       XK_Left,     focusmon,       {.i = -1 } },
-    { MODKEY,                       XK_Right,    focusmon,       {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_Left,     tagmon,         {.i = -1 } },
-    { MODKEY|ShiftMask,             XK_Right,    tagmon,         {.i = +1 } },
+    { MODKEY,                       XK_Left,     viewprev,     {0} },
+    { MODKEY,                       XK_Right,    viewnext,    {0} },
+    { MODKEY|ShiftMask,             XK_Left,     tagtoprev,      {0} },
+    { MODKEY|ShiftMask,             XK_Right,    tagtonext,     {0} },
+    { MODKEY|ControlMask,           XK_Left,     focusmon,       {.i = -1 } },
+    { MODKEY|ControlMask,           XK_Right,    focusmon,       {.i = +1 } },
+    { MODKEY|Mod1Mask,              XK_Left,     tagmon,         {.i = -1 } },
+    { MODKEY|Mod1Mask,              XK_Right,    tagmon,         {.i = +1 } },
 
     { MODKEY,                       XK_s,    scratchpad_show,   {0} },
     { MODKEY|ShiftMask,             XK_s,    scratchpad_hide,   {0} },
     { MODKEY|Mod1Mask,              XK_s,    scratchpad_remove, {0} },
+};
+
+/* resizemousescroll direction argument list */
+static const int scrollargs[][2] = {
+	/* width change         height change */
+	{ +scrollsensetivity,	0 },
+	{ -scrollsensetivity,	0 },
+	{ 0, 				  	+scrollsensetivity },
+	{ 0, 					-scrollsensetivity },
 };
 
 /* button definitions */
@@ -218,6 +235,10 @@ static Button buttons[] = {
     { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	  { ClkClientWin,         MODKEY,         Button4,        resizemousescroll, {.v = &scrollargs[0]} },
+	  { ClkClientWin,         MODKEY,         Button5,        resizemousescroll, {.v = &scrollargs[1]} },
+	  { ClkClientWin,         MODKEY,         Button6,        resizemousescroll, {.v = &scrollargs[2]} },
+	  { ClkClientWin,         MODKEY,         Button7,        resizemousescroll, {.v = &scrollargs[3]} },
     { ClkTagBar,            0,              Button1,        view,           {0} },
     { ClkTagBar,            0,              Button3,        toggleview,     {0} },
     { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },

@@ -71,6 +71,12 @@
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
 #define TRUNC(X,A,B)            (MAX((A), MIN((X), (B))))
 
+/* Undefined in X11/X.h buttons that are actualy exist and correspond to
+ * horizontal scroll
+ */
+#define Button6			6
+#define Button7			7
+
 #define SYSTEM_TRAY_REQUEST_DOCK    0
 /* XEMBED messages */
 #define XEMBED_EMBEDDED_NOTIFY      0
@@ -249,8 +255,10 @@ static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
+static unsigned int nexttag(void);
 static Client *nexttiled(Client *c);
 static void pop(Client *);
+static unsigned int prevtag(void);
 static void propertynotify(XEvent *e);
 static void pushstack(const Arg *arg);
 static void quit(const Arg *arg);
@@ -260,6 +268,7 @@ static void resize(Client *c, int x, int y, int w, int h, int interact);
 static void resizeclient(Client *c, int x, int y, int w, int h);
 static void resizebarwin(Monitor *m);
 static void resizemouse(const Arg *arg);
+static void resizemousescroll(const Arg *arg);
 static void resizerequest(XEvent *e);
 static void restack(Monitor *m);
 static void rotatestack(const Arg *arg);
@@ -294,6 +303,8 @@ static int stackpos(const Arg *arg);
 static Monitor *systraytomon(Monitor *m);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
+static void tagtonext(const Arg *arg);
+static void tagtoprev(const Arg *arg);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglefullscr(const Arg *arg);
@@ -318,6 +329,8 @@ static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
 static void view(const Arg *arg);
+static void viewnext(const Arg *arg);
+static void viewprev(const Arg *arg);
 static void warp(const Client *c);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
@@ -1817,6 +1830,30 @@ movemouse(const Arg *arg)
 	}
 }
 
+unsigned int
+nexttag(void)
+{
+	unsigned int seltag = selmon->tagset[selmon->seltags];
+	unsigned int usedtags = 0;
+	Client *c = selmon->clients;
+
+	if (!c)
+		return seltag;
+
+	/* skip vacant tags */
+	do {
+		usedtags |= c->tags;
+		c = c->next;
+	} while (c);
+
+	do {
+		seltag = seltag == (1 << (LENGTH(tags) - 1)) ? 1 : seltag << 1;
+	} while (!(seltag & usedtags));
+
+	return seltag;
+}
+
+
 Client *
 nexttiled(Client *c)
 {
@@ -1831,6 +1868,28 @@ pop(Client *c)
 	attach(c);
 	focus(c);
 	arrange(c->mon);
+}
+
+unsigned int
+prevtag(void)
+{
+	unsigned int seltag = selmon->tagset[selmon->seltags];
+	unsigned int usedtags = 0;
+	Client *c = selmon->clients;
+	if (!c)
+		return seltag;
+
+	/* skip vacant tags */
+	do {
+		usedtags |= c->tags;
+		c = c->next;
+	} while (c);
+
+	do {
+		seltag = seltag == 1 ? (1 << (LENGTH(tags) - 1)) : seltag >> 1;
+	} while (!(seltag & usedtags));
+
+	return seltag;
 }
 
 void
@@ -2027,6 +2086,45 @@ resizemouse(const Arg *arg)
 			break;
 		}
 	} while (ev.type != ButtonRelease);
+	XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w + c->bw - 1, c->h + c->bw - 1);
+	XUngrabPointer(dpy, CurrentTime);
+	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
+	if ((m = recttomon(c->x, c->y, c->w, c->h)) != selmon) {
+		sendmon(c, m);
+		selmon = m;
+		focus(NULL);
+	}
+}
+
+void
+resizemousescroll(const Arg *arg)
+{
+	int nw, nh;
+	Client *c;
+	Monitor *m;
+	XEvent ev;
+	int dw = *((int*)arg->v + 1);
+	int dh = *(int*)arg->v;
+
+	if (!(c = selmon->sel))
+		return;
+	if (c->isfullscreen) /* no support resizing fullscreen windows by mouse */
+		return;
+	restack(selmon);
+	if (XGrabPointer(dpy, root, False, MOUSEMASK, GrabModeAsync, GrabModeAsync,
+		None, cursor[CurResize]->cursor, CurrentTime) != GrabSuccess)
+		return;
+	nw = MAX(c->w + dw, 1);
+	nh = MAX(c->h + dh, 1);
+	if (c->mon->wx + nw >= selmon->wx && c->mon->wx + nw <= selmon->wx + selmon->ww
+	&& c->mon->wy + nh >= selmon->wy && c->mon->wy + nh <= selmon->wy + selmon->wh)
+	{
+		if (!c->isfloating && selmon->lt[selmon->sellt]->arrange
+		&& (abs(nw - c->w) > snap || abs(nh - c->h) > snap))
+			togglefloating(NULL);
+	}
+	if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
+		resize(c, c->x, c->y, nw, nh, 1);
 	XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w + c->bw - 1, c->h + c->bw - 1);
 	XUngrabPointer(dpy, CurrentTime);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
@@ -2696,6 +2794,35 @@ tagmon(const Arg *arg)
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
 
+void
+tagtonext(const Arg *arg)
+{
+	unsigned int tmp;
+
+	if (selmon->sel == NULL)
+		return;
+
+	if ((tmp = nexttag()) == selmon->tagset[selmon->seltags])
+		return;
+
+	tag(&(const Arg){.ui = tmp });
+	view(&(const Arg){.ui = tmp });
+}
+
+void
+tagtoprev(const Arg *arg)
+{
+	unsigned int tmp;
+
+	if (selmon->sel == NULL)
+		return;
+
+	if ((tmp = prevtag()) == selmon->tagset[selmon->seltags])
+		return;
+
+	tag(&(const Arg){.ui = tmp });
+	view(&(const Arg){.ui = tmp });
+}
 
 void
 togglebar(const Arg *arg)
@@ -3322,6 +3449,18 @@ view(const Arg *arg)
 	arrange(selmon);
 }
 
+void
+viewnext(const Arg *arg)
+{
+	view(&(const Arg){.ui = nexttag()});
+}
+
+void
+viewprev(const Arg *arg)
+{
+	view(&(const Arg){.ui = prevtag()});
+}
+ 
 void
 warp(const Client *c)
 {
